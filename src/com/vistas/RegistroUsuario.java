@@ -5,7 +5,11 @@
 package com.vistas;
 
 import com.clases.ManejoArchivos;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,7 +49,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
         jPFContrasena = new javax.swing.JPasswordField();
         jBRegistrar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -85,13 +88,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,22 +115,14 @@ public class RegistroUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(106, 106, 106)
                 .addComponent(jLTitulo)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(38, Short.MAX_VALUE)
-                        .addComponent(jLTitulo)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jLTitulo)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLUsuario)
                     .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,8 +162,21 @@ public class RegistroUsuario extends javax.swing.JFrame {
         contrasena = jPFContrasena.getText();
         repContrasena = jPFRepContrasena.getText();
         
-        if((contrasena.equals(repContrasena)) && (validarUsuarioNoRepetido(usuario, contrasena))){
-            
+        if(contrasena.equals(repContrasena)){
+            if(validarUsuarioNoRepetido(usuario, contrasena)){
+                ma.crearUsuario(usuario, contrasena);
+                JOptionPane.showMessageDialog(null,
+                        "Bienvenido "+ usuario+ " su usuario ha sido registrado",
+                        "Usuario Registrado",
+                        JOptionPane.INFORMATION_MESSAGE);
+                        dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null,
+                    "Usuario ya registrado" ,
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            }
         }
         else{
             JOptionPane.showMessageDialog(null,
@@ -185,11 +186,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jBRegistrarMouseClicked
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        boolean a = validarUsuarioNoRepetido("aaaa","aaa");
-    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -229,7 +225,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBRegistrar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLContrasena;
     private javax.swing.JLabel jLRepContrasena;
     private javax.swing.JLabel jLTitulo;
@@ -242,14 +237,20 @@ public class RegistroUsuario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     private boolean validarUsuarioNoRepetido(String usuario, String contrasena){
+        try {
+            sc = new Scanner(new File("bd\\usuarios.txt"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RegistroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
         int nLineas = ma.contarLineasArchivos("bd\\usuarios.txt");
-        System.out.println(nLineas);
+        
         String [] usuarios = new String[nLineas];
         String [] contrasenas = new String[nLineas];
         
         int u = 0, c = 0;
-        for(int i = 0; i<nLineas; i++){        
-            if(i%2 == 0){
+        for(int i = 0; i<nLineas; i++){
+            if(i%2 == 0){  
                 usuarios[u] = sc.nextLine();
                 u++;
             }
@@ -259,13 +260,16 @@ public class RegistroUsuario extends javax.swing.JFrame {
             }    
         }
         
-        for(int i=0; i<usuarios.length/2; i++){
-            System.out.println("de pana");
-            if(usuarios[i].equalsIgnoreCase(usuario) && contrasenas[i].equals(contrasena)){
-                return true;
+        //revision de logica
+        for(int j=0; j<usuarios.length/2; j++){
+            if(usuarios[j].equalsIgnoreCase(usuario)){ 
+                if (contrasenas[j].equals(contrasena)){
+                    return false;
+                }
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 

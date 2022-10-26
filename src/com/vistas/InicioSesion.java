@@ -149,58 +149,32 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_jPFContrasenaActionPerformed
 
     private void jBInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBInicioMouseClicked
-        //Leer Datos txt
-        FileReader fr = null;
-        
-        //cuenta las lineas del txt para almacenar los datos en un arreglo,
         try {
-            int nLineas = 0;
-            String linea;
             sc = new Scanner(new File("bd\\usuarios.txt"));
-            File f = new File("bd\\usuarios.txt");
-            fr = new FileReader(f);
-            BufferedReader bf = new BufferedReader(fr);
-            
-            try {
-                while((linea = bf.readLine())!= null){
-                    nLineas++;              
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            //almacenar datos arreglo
-            String [] usuarios = new String[nLineas];
-            String [] contrasenas = new String[nLineas];
-            int u = 0, c = 0;
-            for(int i = 0; i<nLineas; i++){        
-                if(i%2 == 0){
-                    usuarios[u] = sc.nextLine();
-                    u++;
-                }
-                else{
-                    contrasenas[c] = sc.nextLine();
-                    c++;
-                }    
-            }                        
-            
-            //validacion de usuario y contraseña
-            usuario = jTFUsuario.getText();
-            contrasena = jPFContrasena.getText();
-            validacionInicioSesion(usuarios, contrasenas, usuario, contrasena, intentos);
-            intentos--;
-              
-            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fr.close();
-            } catch (IOException ex) {
-                Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
-        
+        int nLineas = ma.contarLineasArchivos("bd\\usuarios.txt");
+        //almacenar datos arreglo
+        String [] usuarios = new String[nLineas];
+        String [] contrasenas = new String[nLineas];
+        int u = 0, c = 0;
+        for(int i = 0; i<nLineas; i++){        
+            if(i%2 == 0){
+                usuarios[u] = sc.nextLine();
+                u++;
+             }
+            else{
+                contrasenas[c] = sc.nextLine();
+                c++;
+            }    
+        }                        
+            
+        //validacion de usuario y contraseña
+        usuario = jTFUsuario.getText();
+        contrasena = jPFContrasena.getText();
+        validacionInicioSesion(usuarios, contrasenas, usuario, contrasena, intentos);
+        intentos--;
     }//GEN-LAST:event_jBInicioMouseClicked
 
     private void jBInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInicioActionPerformed

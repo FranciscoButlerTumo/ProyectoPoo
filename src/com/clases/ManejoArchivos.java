@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -71,5 +72,21 @@ public class ManejoArchivos {
                 return 0;
             }
         }
+    }
+    
+    public void crearUsuario(String usuario, String contrasena){
+        File archivo = new File("bd\\usuarios.txt");
+        try {
+            FileWriter arch = new FileWriter(archivo,true);
+            PrintWriter salida = new PrintWriter(arch);
+            salida.println(usuario);
+            salida.println(contrasena);
+            salida.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+        
     }
 }
