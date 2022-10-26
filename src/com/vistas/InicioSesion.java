@@ -4,6 +4,7 @@
  */
 package com.vistas;
 
+import com.clases.ManejoArchivos;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,12 +22,15 @@ public class InicioSesion extends javax.swing.JFrame {
     private Scanner sc;
     private int intentos = 3;
     private String usuario, contrasena;
+    private ManejoArchivos ma = new ManejoArchivos();
 
     /**
      * Creates new form InicioSesion
      */
     public InicioSesion() {
         initComponents();
+        //valida la existencia del archivo 'usuarios.txt'
+        ma.validarArchivo("usuarios.txt");
         setLocationRelativeTo(null);
     }
 
@@ -79,6 +83,11 @@ public class InicioSesion extends javax.swing.JFrame {
         jLContrasena.setText("Contraseña");
 
         jBRegistro.setText("Registrarse");
+        jBRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBRegistroMouseClicked(evt);
+            }
+        });
 
         jLTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLTitulo.setText("Bienvenido a AppPlantas");
@@ -143,11 +152,12 @@ public class InicioSesion extends javax.swing.JFrame {
         //Leer Datos txt
         FileReader fr = null;
         
+        //cuenta las lineas del txt para almacenar los datos en un arreglo,
         try {
             int nLineas = 0;
             String linea;
-            sc = new Scanner(new File("C:\\usuarios.txt"));
-            File f = new File("C:/usuarios.txt");
+            sc = new Scanner(new File("bd\\usuarios.txt"));
+            File f = new File("bd\\usuarios.txt");
             fr = new FileReader(f);
             BufferedReader bf = new BufferedReader(fr);
             
@@ -160,10 +170,8 @@ public class InicioSesion extends javax.swing.JFrame {
             }
             
             //almacenar datos arreglo
-            String [] usuarios = null;
-            String [] contrasenas = null;
-            usuarios = new String[nLineas];
-            contrasenas = new String[nLineas];
+            String [] usuarios = new String[nLineas];
+            String [] contrasenas = new String[nLineas];
             int u = 0, c = 0;
             for(int i = 0; i<nLineas; i++){        
                 if(i%2 == 0){
@@ -198,6 +206,13 @@ public class InicioSesion extends javax.swing.JFrame {
     private void jBInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInicioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBInicioActionPerformed
+
+    private void jBRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBRegistroMouseClicked
+        // TODO add your handling code here
+        
+        RegistroUsuario re = new RegistroUsuario();
+        re.setVisible(true);
+    }//GEN-LAST:event_jBRegistroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -244,7 +259,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JTextField jTFUsuario;
     // End of variables declaration//GEN-END:variables
     
-    public void validacionInicioSesion(String usuarios[], String contrasenas[], String usuario, String contrasena, int intentos){
+    private void validacionInicioSesion(String usuarios[], String contrasenas[], String usuario, String contrasena, int intentos){
         boolean encontrado = false;
 
         for(int i= 0;i< usuarios.length/2;i++){
