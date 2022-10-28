@@ -253,7 +253,7 @@ public class Usuario{
     public void modificarPlanta(){
         String nombreIngresado, opcion, cambio;
         do{
-            System.out.println("Ingrese el nombre del usuario que desea modificar");
+            System.out.println("Ingrese el nombre de la planta que desea modificar");
             System.out.println("0)EXIT");
             System.out.println();
             nombreIngresado = sc.nextLine();
