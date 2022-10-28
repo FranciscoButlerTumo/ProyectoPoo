@@ -5,6 +5,7 @@
 package com.vistas;
 
 import com.clases.ManejoArchivos;
+import com.clases.MenuConsola;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,6 +24,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private int intentos = 3;
     private String usuario, contrasena;
     private ManejoArchivos ma = new ManejoArchivos();
+    
 
     /**
      * Creates new form InicioSesion
@@ -30,7 +32,10 @@ public class InicioSesion extends javax.swing.JFrame {
     public InicioSesion() {
         initComponents();
         //valida la existencia del archivo 'usuarios.txt'
-        ma.validarArchivo("usuarios.txt");
+        if(!(ma.validarArchivo("usuarios.txt"))){
+            ma.crearArchivoUsuarios("usuarios.txt");
+        }
+        
         setLocationRelativeTo(null);
     }
 
@@ -235,16 +240,21 @@ public class InicioSesion extends javax.swing.JFrame {
     
     private void validacionInicioSesion(String usuarios[], String contrasenas[], String usuario, String contrasena, int intentos){
         boolean encontrado = false;
+        MenuConsola mn = new MenuConsola();
 
         for(int i= 0;i< usuarios.length/2;i++){
             //inicio exitoso
             if(usuarios[i].equalsIgnoreCase(usuario) && contrasenas[i].equals(contrasena)){
                 encontrado = true;
                 JOptionPane.showMessageDialog(null,
-                        "Bienvenido",
+                        "Bienvenido a AppPlantas, el programa seguira ejecutandose por consola",
                         "Sesion Iniciada",
                         JOptionPane.INFORMATION_MESSAGE);
-                        System.exit(0);
+                        dispose();
+                        mn.menu(usuario);
+                        
+                        
+                        
             }
         }
         if(intentos==1){

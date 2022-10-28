@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.appplantas;
+package com.clases;
 
 import java.util.Date;
 
@@ -54,14 +54,14 @@ public class Planta{
         this.cantVecesRiego = cantVecesRiego;
     }
     
-    public void mostrarDatos(String nombre,Date fecha,int cantRiego){
+    public void mostrarDatos(){
         System.out.println("El nombre de la planta es " +nombre+ ".");
-        System.out.println("La fecha de siembra es " +fecha+ ".");
-        if(cantRiego == 1){    
-            System.out.println("Se ha regado " +cantRiego+ " vez esta planta.");
+        System.out.println("La fecha de siembra es " + fechaSembrado + ".");
+        if(cantVecesRiego == 1){    
+            System.out.println("Se ha regado " +cantVecesRiego+ " vez esta planta.");
         }
         else{
-            System.out.println("Se ha regado " +cantRiego+ " veces esta planta.");
+            System.out.println("Se ha regado " +cantVecesRiego+ " veces esta planta.");
         }   
     }
 }
