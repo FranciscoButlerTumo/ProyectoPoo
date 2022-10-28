@@ -4,8 +4,6 @@
  */
 package com.clases;
 
-import java.util.Date;
-
 /**
  *
  * @author romin
@@ -40,7 +38,7 @@ public class PlantaExterior extends Planta{
     }
 
 
-    public void mostrarDatos(String tipoClima){
+    public void mostrarDatos(){
 
         System.out.println("El nombre de la planta es " + getNombre() + ".");
         System.out.println("La fecha de siembra es " +getFechaSembrado()+ ".");
@@ -50,8 +48,8 @@ public class PlantaExterior extends Planta{
         else{
             System.out.println("Se ha regado " +getCantVecesRiego()+ " veces esta planta.");
         }
-        System.out.println("El tipo de clima en el que se encuentra la planta actualmentes es" + tipoClima);
-        System.out.println("La temporada en la que se encuentra la planta actualmente es" + temporada);
+        System.out.println("El tipo de clima en el que se encuentra la planta actualmentes es " + getTipoClima());
+        System.out.println("La temporada en la que se encuentra la planta actualmente es " + getTemporada());
 
     }
 }

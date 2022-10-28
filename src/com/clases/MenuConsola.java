@@ -38,36 +38,38 @@ public class MenuConsola {
             switch(opcion){
                 case "1":
                     //agregarPlantas
-                    PlantaExterior pe = new PlantaExterior("Plantita","22/02/2002",
-                            3,"arido","verano");
-                    usuarioSesion.getPlantasUsuario().add(pe);
-                    PlantaInterior pi = new PlantaInterior("Plantoide","22/02/2003",
-                            10,"poca",30);
-                    usuarioSesion.getPlantasUsuario().add(pi);
+                    System.out.println();
+                    usuarioSesion.agregarPlantas();
+                    System.out.println("\n");
                     break;
                     
                 case "2":
                     //mostrar plantas
                     System.out.println();
-                    for(int i=0; i< usuarioSesion.getPlantasUsuario().size(); i++){
-                        usuarioSesion.getPlantasUsuario().get(i).mostrarDatos();
-                        System.out.println();
-                    }
-                    System.out.println();
+                    usuarioSesion.mostrarDatosPlantas();
+                    System.out.println("\n");
                     break;
                     
                 case "3":
                     //buscar planta
-                    usuarioSesion.setCantPlantasSembradas(2);
+                    System.out.println();
+                    usuarioSesion.buscarPlanta();
+                    System.out.println("\n");
                     break;
                     
                 case "4":
                     //modificar planta
+                    System.out.println();
+                    usuarioSesion.modificarPlanta();
+                    System.out.println("\n");
                     
                     break;
                     
                 case "5":
                     //eliminar planta
+                    System.out.println();
+                    usuarioSesion.eliminarPlanta();
+                    System.out.println("\n");
                     break;
                     
                 default:
@@ -109,6 +111,10 @@ public class MenuConsola {
         
         return nuevoUsuario;
     }
+    
+    
+    
+    
     
     
 }

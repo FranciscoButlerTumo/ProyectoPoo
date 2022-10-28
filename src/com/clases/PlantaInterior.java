@@ -4,8 +4,6 @@
  */
 package com.clases;
 
-import java.util.Date;
-
 /**
  *
  * @author romin
@@ -39,7 +37,7 @@ public class PlantaInterior extends Planta{
     }
 
 
-    public void mostrarDatos(String cantidadLuz, int temperaturaCelcius){
+    public void mostrarDatos(){
 
         System.out.println("El nombre de la planta es " + getNombre() + ".");
         System.out.println("La fecha de siembra es " +getFechaSembrado()+ ".");
@@ -49,7 +47,9 @@ public class PlantaInterior extends Planta{
         else{
             System.out.println("Se ha regado " +getCantVecesRiego()+ " veces esta planta.");
         }
-        System.out.println("La cantidad de luz que la planta ha recibido es" + cantidadLuz);
+        System.out.println("La cantidad de luz que la planta ha recibido es " + getCantidadLuz());
+        
+        System.out.println("La temperatura de la planta es "+ getTemperaturaCelcius());
 
     }
 }
