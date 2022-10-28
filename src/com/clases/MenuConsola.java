@@ -38,21 +38,32 @@ public class MenuConsola {
             switch(opcion){
                 case "1":
                     //agregarPlantas
+                    PlantaExterior pe = new PlantaExterior("Plantita","22/02/2002",
+                            3,"arido","verano");
+                    usuarioSesion.getPlantasUsuario().add(pe);
+                    PlantaInterior pi = new PlantaInterior("Plantoide","22/02/2003",
+                            10,"poca",30);
+                    usuarioSesion.getPlantasUsuario().add(pi);
                     break;
                     
                 case "2":
                     //mostrar plantas
+                    System.out.println();
                     for(int i=0; i< usuarioSesion.getPlantasUsuario().size(); i++){
                         usuarioSesion.getPlantasUsuario().get(i).mostrarDatos();
+                        System.out.println();
                     }
+                    System.out.println();
                     break;
                     
                 case "3":
                     //buscar planta
+                    usuarioSesion.setCantPlantasSembradas(2);
                     break;
                     
                 case "4":
                     //modificar planta
+                    
                     break;
                     
                 case "5":
@@ -67,9 +78,11 @@ public class MenuConsola {
             
             
         }while(!(opcion.equals("0")));
+        ma.guardarDatos("bd\\"+ usuarioSesion.getUsuario() +"bd.txt", "bd\\"+ usuarioSesion.getUsuario()
+                +"PlantasBD.csv", usuarioSesion);
     }
     
-    public void cargarDatos(String usu){
+    private void cargarDatos(String usu){
         String [] nombreUsuario = new String[2];
         String [] datosUsuario = new String[4];
         if(!(ma.validarArchivo( usu+"bd.txt"))){
@@ -83,7 +96,7 @@ public class MenuConsola {
         usuarioSesion = new Usuario(datosUsuario[0],datosUsuario[1],datosUsuario[2], Integer.parseInt(datosUsuario[3]), plantas);
     }
     
-    public String[] agregarNombreUsuario(){
+    private String[] agregarNombreUsuario(){
         Scanner Entrada = new Scanner(System.in);
         String[] nuevoUsuario = new String[2];
         

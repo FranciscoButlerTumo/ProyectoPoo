@@ -15,7 +15,7 @@ public class PlantaInterior extends Planta{
     private int temperaturaCelcius;
 
 
-    public PlantaInterior(String nombreIngresado, Date fechaSembradoIngresado, int cantVecesRiegoIngresado,
+    public PlantaInterior(String nombreIngresado, String fechaSembradoIngresado, int cantVecesRiegoIngresado,
         String cantidadLuzIngresado, int temperaturaCelciusIngresado){
         super(nombreIngresado, fechaSembradoIngresado, cantVecesRiegoIngresado);
         this.cantidadLuz = cantidadLuzIngresado;

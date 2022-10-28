@@ -110,7 +110,7 @@ public class Usuario{
         
         if(auxDate != null){ // para evitar agregar una fecha nula
             nuevaPlanta.setNombre(auxNombre);
-            nuevaPlanta.setFechaSembrado(stringADate(auxDate));
+            nuevaPlanta.setFechaSembrado(auxDate);
             nuevaPlanta.setCantVecesRiego(auxNum);
             this.plantasUsuario.add(nuevaPlanta);
         }
@@ -126,17 +126,6 @@ public class Usuario{
         System.out.println("Nombre: "+this.nombre+" "+ this.apellido);
         System.out.println("Plantas sembradas: "+ contarPlantas());
     }
-    
-    //date a string
-    //pienso que deberia ser privado ya que solo sirve para la funcion agregarPlantas
-    private Date stringADate(String var){
-        Date fecha = null;
-        try{ //try catch necesario, sirve para seguir una serie de intrsucciones cuando hay un error
-            fecha = sdf.parse(var); 
-        }catch(ParseException e){   //ParseException e tipo de error
-        } //en blanco porque no hay instucciones para cuando haya error
-        return fecha; // si es valido retorna un dato tipo date y si no es valido retorna un dato null
-    }   
 }
 
     

@@ -13,7 +13,7 @@ import java.util.Date;
 public class Planta{
     //Atributos
     private String nombre;
-    private Date fechaSembrado;
+    private String fechaSembrado;
     private int cantVecesRiego;
 
     //Contructor
@@ -23,7 +23,7 @@ public class Planta{
         cantVecesRiego = 0;
     }
     
-    public Planta(String nombreIngresado, Date fechaSembradoIngresado, int cantVecesRiegoIngresado){
+    public Planta(String nombreIngresado, String fechaSembradoIngresado, int cantVecesRiegoIngresado){
         this.nombre = nombreIngresado;
         this.fechaSembrado = fechaSembradoIngresado;
         this.cantVecesRiego = cantVecesRiegoIngresado;
@@ -34,7 +34,7 @@ public class Planta{
         return nombre;
     }
 
-    public Date getFechaSembrado() {
+    public String getFechaSembrado() {
         return fechaSembrado;
     }
 
@@ -46,7 +46,7 @@ public class Planta{
         this.nombre = nombre;
     }
 
-    public void setFechaSembrado(Date fechaSembrado) {
+    public void setFechaSembrado(String fechaSembrado) {
         this.fechaSembrado = fechaSembrado;
     }
 

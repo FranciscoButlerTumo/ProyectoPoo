@@ -15,11 +15,11 @@ public class PlantaExterior extends Planta{
     private String temporada;
 
 
-    public PlantaExterior(String nombreIngresado, Date fechaSembradoIngresado, int cantVecesRiegoIngresado,
+    public PlantaExterior(String nombreIngresado, String fechaSembradoIngresado, int cantVecesRiegoIngresado,
             String tipoClimaIngresado, String temporadaIngresado) {
         super(nombreIngresado, fechaSembradoIngresado, cantVecesRiegoIngresado);
-        this.tipoClima = tipoClima;
-        this.temporada = temporada;
+        this.tipoClima = tipoClimaIngresado;
+        this.temporada = temporadaIngresado;
     }
 
     public String getTemporada() {
