@@ -220,6 +220,28 @@ public class Usuario{
         }while("0".equals(nombreIngresado));
     }
     
+    public void buscarPlantaMenosRegada(){
+        ArrayList<Planta> plantasMenosRegadas = new ArrayList<Planta>();
+        int cantMenor = -1, cantRiego;
+        for(int i=0;i<this.plantasUsuario.size();i++){
+            cantRiego = this.plantasUsuario.get(i).getCantVecesRiego();
+            if(cantMenor == -1 || cantRiego < cantMenor){
+                cantMenor = cantRiego;
+            }
+        }
+        for(int i=0;i<this.plantasUsuario.size();i++){
+            cantRiego = this.plantasUsuario.get(i).getCantVecesRiego();
+            if(cantRiego == cantMenor){
+                plantasMenosRegadas.add(this.plantasUsuario.get(i));
+            }
+        }
+        
+        for(int i=0; i< plantasMenosRegadas.size(); i++){
+            plantasMenosRegadas.get(i).mostrarDatos();
+            System.out.println();
+        }
+        
+    }
     public void eliminarPlanta(){
         String nombreIngresado;
         do{

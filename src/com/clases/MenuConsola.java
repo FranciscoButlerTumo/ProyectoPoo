@@ -27,8 +27,9 @@ public class MenuConsola {
             System.out.println("Ingrese 1)Para agregar plantas");
             System.out.println("Ingrese 2)Para mostrar plantas");
             System.out.println("Ingrese 3)Para buscar una planta");
-            System.out.println("Ingrese 4)Para modificar datos de alguna planta");
-            System.out.println("Ingrese 5)Para eliminar alguna planta\n");
+            System.out.println("Ingrese 4)Para buscar las planta menos regadas");
+            System.out.println("Ingrese 5)Para modificar datos de alguna planta");
+            System.out.println("Ingrese 6)Para eliminar alguna planta\n");
             
             System.out.println("Ingrese 0)Para finalizar el programa\n");
             
@@ -58,6 +59,13 @@ public class MenuConsola {
                     break;
                     
                 case "4":
+                    //buscar planta menos regada
+                    System.out.println();
+                    usuarioSesion.buscarPlantaMenosRegada();
+                    System.out.println("\n");
+                    break;
+                    
+                case "5":
                     //modificar planta
                     System.out.println();
                     usuarioSesion.modificarPlanta();
@@ -65,7 +73,7 @@ public class MenuConsola {
                     
                     break;
                     
-                case "5":
+                case "6":
                     //eliminar planta
                     System.out.println();
                     usuarioSesion.eliminarPlanta();
