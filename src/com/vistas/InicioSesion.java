@@ -267,8 +267,8 @@ public class InicioSesion extends javax.swing.JFrame {
         //inicio fallido
         if(encontrado == false){
             JOptionPane.showMessageDialog(null,
-                    "Usuario o Contraseña incorrectos, asegurese que los datos que esta ingresando esten correctos,"
-                            + "le quedan " + (intentos-1) + "intentos" ,
+                    "Usuario o Contraseña incorrectos, asegurese que los datos que esta ingresando esten correctos, "
+                            + "le quedan " + (intentos-1) + " intentos" ,
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
