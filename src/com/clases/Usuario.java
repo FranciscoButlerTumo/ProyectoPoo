@@ -111,18 +111,55 @@ public class Usuario{
                     System.out.println("Ingrese la fecha en la cual sembro la planta");
                     fechaSembrado = sc.nextLine();
                     
+                    if(validarFechaSembrado(fechaSembrado)){
+                        System.out.println("La fecha ingresada no es valida");
+                        return;
+                    }    
+                   
+                    
                     System.out.println("Ingrese cuantas veces rego la planta");
                     cantRiego = sc.nextLine();
+                    if(Integer.parseInt(cantRiego)<0){
+                        System.out.println("Error cantidad inferior a 0");
+                        return;
+                    }
                     
                     //PlantaInterior
-                    System.out.println("Ingrese la cantidad de luz que recibe");
+                    System.out.println("Ingrese el tipo de luz que recibe)");
+                    System.out.println("Ingrese 1) Para dia Corto");
+                    System.out.println("Ingrese 2) Para dia Largo");
+                    
+                    System.out.println("0)EXIT");
                     cantLuz = sc.nextLine();
+                    String tipoDia; 
+                    
+                    switch(opcion){
+                        case "1":
+                            //dia Corto
+                            tipoDia = "dia Corto";
+                            break;
+                            
+                        case "2":
+                            //dia Largo
+                            tipoDia = "dia Largo";
+                            break;
+                        
+                        case "0": 
+                            //exit
+                            return;
+                        
+                        default:
+                            System.out.println("Opcion invalida");
+                            return;
+                    }
+                    
+
                     
                     System.out.println("Ingrese la temperatura de la planta");
                     tempC = sc.nextLine();
                     
                     plant  = new PlantaInterior(nombre,fechaSembrado
-                            ,Integer.parseInt(cantRiego),cantLuz,Integer.parseInt(tempC));
+                            ,Integer.parseInt(cantRiego),tipoDia ,Integer.parseInt(tempC));
                     
                     if(!validarUsuarioRep(plant)){
                         this.plantasUsuario.add(plant);
@@ -136,26 +173,105 @@ public class Usuario{
                     return;
                     
                 case "2":
-                    //Planta
+                    //Planta Exterior
                     System.out.println("\n");
                     System.out.println("Ingrese el nombre de la planta");
                     nombre = sc.nextLine();
                     
-                    System.out.println("Ingrese la fecha en la cual sembro la planta");
+                    System.out.println("Ingrese la fecha en la cual sembro la planta con el formato DD/MM/YYYY");
                     fechaSembrado = sc.nextLine();
+                    
+                    if(!validarFechaSembrado(fechaSembrado)){
+                        System.out.println("La fecha ingresada no es valida");
+                        return;
+                    }    
+                    
+                    
+                    
                     
                     System.out.println("Ingrese cuantas veces rego la planta");
                     cantRiego = sc.nextLine();
                     
                     //PlantaExterior
                     System.out.println("Ingrese el tipo de clima que presenta la planta");
-                    tipClima = sc.nextLine();
+                    System.out.println("Ingrese 1) Para clima seco");
+                    System.out.println("Ingrese 2) Para clima tropical");
+                    System.out.println("Ingrese 3) Para clima templado");
+                    System.out.println("Ingrese 4) Para clima continental");
+                    
+                    System.out.println("0)EXIT");
+                    
+                    opcion = sc.nextLine();
+                    String tipoClima;
+                    
+                    switch(opcion){
+                        case "1":
+                            tipoClima = "seco";
+                            break;
+                        
+                        case "2":
+                            tipoClima = "tropical";
+                            break;
+                        
+                        case "3":
+                            tipoClima = "templado";
+                            break;
+                        
+                        case "4":
+                            tipoClima = "continental";
+                            break;
+                        
+                        case "0":
+                            return;
+                        
+                        default:
+                            System.out.println("Opcion no valida");
+                            return;
+                            
+                    }
+                    
+                    
+                    
                     
                     System.out.println("Ingrese la temporada de la planta");
-                    temporada = sc.nextLine();
+                    System.out.println("Ingrese 1) Para clima verano");
+                    System.out.println("Ingrese 2) Para clima otoño");
+                    System.out.println("Ingrese 3) Para clima invierno");
+                    System.out.println("Ingrese 4) Para clima primavera");
+                    
+                    System.out.println("0)EXIT");
+                    
+                    opcion = sc.nextLine();
+                    
+                    
+                    switch(opcion){
+                        case "1":
+                            temporada = "verano";
+                            break;
+                        
+                        case "2":
+                            temporada = "otoño";
+                            break;
+                        
+                        case "3":
+                            temporada = "invierno";
+                            break;
+                        
+                        case "4":
+                            temporada = "primavera";
+                            break;
+                        
+                        case "0":
+                            return;
+                        
+                        default:
+                            System.out.println("Opcion no valida");
+                            return;
+                            
+                    }
                     
                     plant  = new PlantaExterior(nombre,fechaSembrado
-                            ,Integer.parseInt(cantRiego),tipClima,temporada);
+                            ,Integer.parseInt(cantRiego),tipoClima,temporada);
                     
                     if(!validarUsuarioRep(plant)){
                         this.plantasUsuario.add(plant);
@@ -164,7 +280,6 @@ public class Usuario{
                     }
                     else{
                          System.out.println("La planta ya fue registrada, ingrese otro nombre");
-                         
                     }
                     
                    
@@ -384,6 +499,32 @@ public class Usuario{
             System.out.println("Planta no encontrada, ingrese un nombre valido");
             System.out.println();
         }while("0".equals(nombreIngresado));
+    }
+    
+    public boolean validarFechaSembrado(String date){
+        Date myDate = new Date();
+        String fechaActual = new SimpleDateFormat("dd-MM-yyyy").format(myDate); 
+        String diaActual, mesActual, anioActual;
+        diaActual = fechaActual.substring(0, 2);
+        mesActual = fechaActual.substring(3, 5);
+        anioActual = fechaActual.substring(6, 10);
+        
+        String dia, mes, anio, sep1, sep2;
+        dia = date.substring(0, 2);
+        sep1 = date.substring(2,3);
+        mes = date.substring(3,5);
+        sep2 = date.substring(5,6);
+        anio = date.substring(6, 10);
+        if(sep1.equals("/") || (sep2.equals("/"))){
+            return false;
+        }
+        if((Integer.parseInt(mes)<= 12 && Integer.parseInt(mes)>=1)){
+            if( Integer.parseInt(anio)<= Integer.parseInt(anioActual)){
+            return true;
+            }
+        }
+        return false;
+        
     }
     
     

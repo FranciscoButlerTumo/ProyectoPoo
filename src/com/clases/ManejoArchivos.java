@@ -240,7 +240,7 @@ public class ManejoArchivos {
                             ";"+plant.getNombre()+
                             ";"+plant.getFechaSembrado()+
                             ";"+plant.getCantVecesRiego()+
-                            ";"+((PlantaInterior) plant).getCantidadLuz()+
+                            ";"+((PlantaInterior) plant).getTipoDia()+
                             ";"+((PlantaInterior) plant).getTemperaturaCelcius());
                 }
                 

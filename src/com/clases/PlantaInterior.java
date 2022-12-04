@@ -9,27 +9,27 @@ package com.clases;
  * @author romin
  */
 public class PlantaInterior extends Planta{
-    private String cantidadLuz;
+    private String tipoDia;
     private int temperaturaCelcius;
 
 
     public PlantaInterior(String nombreIngresado, String fechaSembradoIngresado, int cantVecesRiegoIngresado,
-        String cantidadLuzIngresado, int temperaturaCelciusIngresado){
+        String tipoDiaIngresado, int temperaturaCelciusIngresado){
         super(nombreIngresado, fechaSembradoIngresado, cantVecesRiegoIngresado);
-        this.cantidadLuz = cantidadLuzIngresado;
+        this.tipoDia = tipoDiaIngresado;
         this.temperaturaCelcius = temperaturaCelciusIngresado;
     }
 
-    public String getCantidadLuz() {
-        return cantidadLuz;
+    public String getTipoDia() {
+        return tipoDia;
     }
 
     public int getTemperaturaCelcius() {
         return temperaturaCelcius;
     }
 
-    public void setCantidadLuz(String cantidadLuz) {
-        this.cantidadLuz = cantidadLuz;
+    public void setCantidadLuz(String tipoDia) {
+        this.tipoDia = tipoDia;
     }
 
     public void setTemperaturaCelcius(int temperatura) {
@@ -47,7 +47,7 @@ public class PlantaInterior extends Planta{
         else{
             System.out.println("Se ha regado " +getCantVecesRiego()+ " veces esta planta.");
         }
-        System.out.println("La cantidad de luz que la planta ha recibido es " + getCantidadLuz());
+        System.out.println("La planta es" + getTipoDia());
         
         System.out.println("La temperatura de la planta es "+ getTemperaturaCelcius());
 
