@@ -47,7 +47,7 @@ public class PlantaInterior extends Planta{
         else{
             System.out.println("Se ha regado " +getCantVecesRiego()+ " veces esta planta.");
         }
-        System.out.println("La planta es" + getTipoDia());
+        System.out.println("La planta es " + getTipoDia());
         
         System.out.println("La temperatura de la planta es "+ getTemperaturaCelcius());
 

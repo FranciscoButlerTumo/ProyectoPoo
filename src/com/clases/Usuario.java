@@ -108,10 +108,10 @@ public class Usuario{
                     System.out.println("Ingrese el nombre de la planta");
                     nombre = sc.nextLine();
                     
-                    System.out.println("Ingrese la fecha en la cual sembro la planta");
+                    System.out.println("Ingrese la fecha en la cual sembro la planta, siga el formato 'DD/MM/YYYY' ");
                     fechaSembrado = sc.nextLine();
                     
-                    if(validarFechaSembrado(fechaSembrado)){
+                    if(!validarFechaSembrado(fechaSembrado)){
                         System.out.println("La fecha ingresada no es valida");
                         return;
                     }    
@@ -502,29 +502,40 @@ public class Usuario{
     }
     
     public boolean validarFechaSembrado(String date){
-        Date myDate = new Date();
-        String fechaActual = new SimpleDateFormat("dd-MM-yyyy").format(myDate); 
-        String diaActual, mesActual, anioActual;
-        diaActual = fechaActual.substring(0, 2);
-        mesActual = fechaActual.substring(3, 5);
-        anioActual = fechaActual.substring(6, 10);
-        
-        String dia, mes, anio, sep1, sep2;
-        dia = date.substring(0, 2);
-        sep1 = date.substring(2,3);
-        mes = date.substring(3,5);
-        sep2 = date.substring(5,6);
-        anio = date.substring(6, 10);
-        if(sep1.equals("/") || (sep2.equals("/"))){
+        try{
+            Date myDate = new Date();
+            String fechaActual = new SimpleDateFormat("dd-MM-yyyy").format(myDate); 
+            String diaActual, mesActual, anioActual;
+            diaActual = fechaActual.substring(0, 2);
+            mesActual = fechaActual.substring(3, 5);
+            anioActual = fechaActual.substring(6, 10);
+
+            String dia, mes, anio, sep1, sep2;
+            dia = date.substring(0, 2);
+            sep1 = date.substring(2,3);
+            mes = date.substring(3,5);
+            sep2 = date.substring(5,6);
+            anio = date.substring(6, 10);
+            if(!(sep1.equals("/") || (sep2.equals("/")))){
+                System.out.println("wat");
+                
+                return false;
+            }
+            if((Integer.parseInt(mes)<= 12 && Integer.parseInt(mes)>=1)){
+                if( Integer.parseInt(anio)<= Integer.parseInt(anioActual)){
+                    System.out.println("wtf");
+                    return true;
+                    
+                }
+            }
+            System.out.println("wit");
             return false;
         }
-        if((Integer.parseInt(mes)<= 12 && Integer.parseInt(mes)>=1)){
-            if( Integer.parseInt(anio)<= Integer.parseInt(anioActual)){
-            return true;
-            }
+        catch(IndexOutOfBoundsException e){
+            System.out.println("wet");
+            return false;
         }
-        return false;
-        
+       
     }
     
     
