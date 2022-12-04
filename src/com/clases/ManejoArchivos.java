@@ -141,6 +141,43 @@ public class ManejoArchivos {
         return buffer;
     }
     
+    public ArrayList<Usuario> cargarTodosUsuarios(String ubicacionArchivo){
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+        
+        File f = new File(ubicacionArchivo);
+        String line;
+        String [] datosUsuario;
+        ArrayList<Planta> plantasUsuario = new ArrayList<Planta>();
+        int cont = 0; // contador para ver que linea leer
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(f));
+            while((line = reader.readLine())!= null){
+                if(cont % 2 == 0){
+                    Usuario user = new Usuario();
+                    user.setUsuario(line);
+                    usuarios.add(user);
+                }
+                cont++;
+            }
+
+            for(int i=0; i<usuarios.size();i++){
+                datosUsuario = cargarDatosUsuario("bd\\"+ usuarios.get(i).getUsuario()+"bd.txt");
+                plantasUsuario = cargarPlantasUsuario("bd\\"+ usuarios.get(i).getUsuario()+"PlantasBD.csv");
+                usuarios.get(i).setUsuario(datosUsuario[0]);
+                usuarios.get(i).setNombre(datosUsuario[1]);
+                usuarios.get(i).setApellido(datosUsuario[2]);
+                usuarios.get(i).setCantPlantasSembradas(Integer.parseInt(datosUsuario[3]));
+                usuarios.get(i).setPlantasUsuario(plantasUsuario);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ManejoArchivos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ManejoArchivos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return usuarios;
+    }
+    
     public ArrayList<Planta> cargarPlantasUsuario(String ubicacionArchivo){
         ArrayList<Planta> plantas = new ArrayList<Planta>();
         String line;

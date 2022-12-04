@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Francisco
  */
-public class Planta{
+public abstract class Planta{
     //Atributos
     private String nombre;
     private String fechaSembrado;
@@ -54,14 +54,5 @@ public class Planta{
         this.cantVecesRiego = cantVecesRiego;
     }
     
-    public void mostrarDatos(){
-        System.out.println("El nombre de la planta es " +nombre+ ".");
-        System.out.println("La fecha de siembra es " + fechaSembrado + ".");
-        if(cantVecesRiego == 1){    
-            System.out.println("Se ha regado " +cantVecesRiego+ " vez esta planta.");
-        }
-        else{
-            System.out.println("Se ha regado " +cantVecesRiego+ " veces esta planta.");
-        }   
-    }
+    public abstract void mostrarDatos();
 }
