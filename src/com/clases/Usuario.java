@@ -517,22 +517,20 @@ public class Usuario{
             sep2 = date.substring(5,6);
             anio = date.substring(6, 10);
             if(!(sep1.equals("/") || (sep2.equals("/")))){
-                System.out.println("wat");
+
                 
                 return false;
             }
             if((Integer.parseInt(mes)<= 12 && Integer.parseInt(mes)>=1)){
                 if( Integer.parseInt(anio)<= Integer.parseInt(anioActual)){
-                    System.out.println("wtf");
                     return true;
                     
                 }
             }
-            System.out.println("wit");
             return false;
         }
         catch(IndexOutOfBoundsException e){
-            System.out.println("wet");
+
             return false;
         }
        
