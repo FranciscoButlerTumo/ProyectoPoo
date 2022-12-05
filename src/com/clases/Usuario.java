@@ -155,7 +155,7 @@ public class Usuario{
                     
 
                     
-                    System.out.println("Ingrese la temperatura de la planta");
+                    System.out.println("Ingrese la temperatura de la planta en grados celcius");
                     tempC = sc.nextLine();
                     
                     plant  = new PlantaInterior(nombre,fechaSembrado
