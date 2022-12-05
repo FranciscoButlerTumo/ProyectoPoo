@@ -49,7 +49,7 @@ public class PlantaInterior extends Planta{
         }
         System.out.println("La planta es " + getTipoDia());
         
-        System.out.println("La temperatura de la planta es "+ getTemperaturaCelcius());
+        System.out.println("La temperatura de la planta es "+ getTemperaturaCelcius() + "°C");
 
     }
 }

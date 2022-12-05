@@ -125,7 +125,7 @@ public class Usuario{
                     }
                     
                     //PlantaInterior
-                    System.out.println("Ingrese el tipo de luz que recibe)");
+                    System.out.println("Ingrese el tipo de luz que recibe");
                     System.out.println("Ingrese 1) Para dia Corto");
                     System.out.println("Ingrese 2) Para dia Largo");
                     
@@ -523,6 +523,7 @@ public class Usuario{
             }
             if((Integer.parseInt(mes)<= 12 && Integer.parseInt(mes)>=1)){
                 if( Integer.parseInt(anio)<= Integer.parseInt(anioActual)){
+                    if((Integer.parseInt(dia)<= 31 && Integer.parseInt(mes)>=1))
                     return true;
                     
                 }
